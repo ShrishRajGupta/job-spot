@@ -1,0 +1,17 @@
+<%- include("./partials/header"); %>
+<!-- JOB POST FORM -->
+<div class="jobdiv">
+    <form action="/admin/jobpostform" method="post">
+        <label for="JobTitle">Job Title</label><br>
+        <input type="text" id="fname" name="jobTitle" placeholder="Enter the Job title"><br>
+        <label for="titleDesc">Title Description</label><br>
+        <textarea id="w3review" name="titleDesc" rows="4" cols="50" placeholder="Enter title Description"></textarea><br>
+        <label for="Skills">Skills</label><br>
+        <textarea id="w3review" name="skills" rows="4" cols="50" placeholder="Enter the skills"></textarea><br>
+        <label for="Duration">Duration</label><br>
+        <input type="text" name="duration"><br>
+        <label for="stipend">Stipend</label><br>
+        <input type="text" name="stipend" placeholder="Enter the stipend"><br><br>
+        <input type="submit" value="Submit">
+      </form>
+</div>

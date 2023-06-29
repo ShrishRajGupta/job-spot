@@ -1,0 +1,65 @@
+<footer class="page-footer">
+    <span>made by </span>
+    <a href="https://georgemartsoukos.com/" target="_blank">
+      <img width="24" height="24" src="https://assets.codepen.io/162656/george-martsoukos-small-logo.svg" alt="George Martsoukos logo">
+    </a>
+  </footer>
+  
+  <script>
+    for (const link of menuLinks) {
+link.addEventListener("mouseenter", function () {
+if (
+  body.classList.contains(collapsedClass) &&
+  window.matchMedia("(min-width: 768px)").matches
+) {
+  const tooltip = this.querySelector("span").textContent;
+  this.setAttribute("title", tooltip);
+} else {
+  this.removeAttribute("title");
+}
+});
+}
+
+/*TOGGLE LIGHT/DARK MODE*/
+if (localStorage.getItem("dark-mode") === "false") {
+html.classList.add(lightModeClass);
+switchInput.checked = false;
+switchLabelText.textContent = "Light";
+}
+
+switchInput.addEventListener("input", function () {
+html.classList.toggle(lightModeClass);
+if (html.classList.contains(lightModeClass)) {
+switchLabelText.textContent = "Light";
+localStorage.setItem("dark-mode", "false");
+} else {
+switchLabelText.textContent = "Dark";
+localStorage.setItem("dark-mode", "true");
+}
+});
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+if (!event.target.matches('.dropbtn')) {
+var dropdowns = document.getElementsByClassName("dropdown-content");
+var i;
+for (i = 0; i < dropdowns.length; i++) {
+  var openDropdown = dropdowns[i];
+  if (openDropdown.classList.contains('show')) {
+    openDropdown.classList.remove('show');
+  }
+}
+}
+}
+
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" target="_blank" rel="noreferrer noopener"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" target="_blank" rel="noreferrer noopener"></script>
+</body>
+</html>
