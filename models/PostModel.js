@@ -1,23 +1,23 @@
 const mongoose = require("mongoose");
 
 const postModel = mongoose.Schema({
-    JobTitle:{
+    jobTitle:{
         type:String,
         required:[true,"ENTER THE JOB TITLE"]
     },
-    JobDesc:{
+    jobDesc:{
         type:String,
         required:[true,"ENTER JOB DESCRIPTION"]
     },
-    Skills:{
+    skills:{
         type:String,
         required:[true,"ENTER THE SKills"]
     },
-    Duration:{
+    duration:{
         type:String,
         required:[true,"DURATION"]
     },
-    Stipend:{
+    stipend:{
         type:String,
         required:[true,"ENTER THE STIPEND"]
     }
