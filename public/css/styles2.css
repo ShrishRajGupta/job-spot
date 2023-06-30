@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+
+  @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+    
+
+/*======================
+    404 page
+=======================*/
+
+
+.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+}
+
+.page_404  img{ width:100%;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+  .four_zero_four_bg h3{
+			 font-size:80px;
+			 }
+			 
+			 .link_404{			 
+	color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+	.contant_box_404{ margin-top:-50px;}
+  
+     /*======================
+    landing page
+=======================*/
+
+body{
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-family: 'Noto Serif', serif;
+  max-width: 1200px;
+}
+p, h1, h2, h3, a, ul{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #222;
+}
+
+ /* nav & footer styles */
+ .blocks{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    padding-bottom: 10px;
+    border: 2px solid #ddd;
+    /* text-transform: uppercase; */
+  }
+  .blocks:hover{
+    font-weight: 800;
+    font-style: italic;
+
+  }
+  nav ul{
+    margin-bottom: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  nav li{
+    list-style-type: none;
+    margin-left: 8vw;
+  }
+  nav h1{
+    font-size: 3em;
+  }
+  nav p, nav a{
+    color: #777;
+    font-weight: 300;
+  }
+  .heading{
+    color: #000;
+    font-weight: 700;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: largeer;
+    cursor: pointer;
+    
+  }
+  .title{
+    color: #777;
+    font-weight: 500;
+    font-family: 'Ubuntu', sans-serif;
+    
+
+  }
+  footer{
+    color: #777;
+    text-align: center;
+    margin: 80px auto 20px;
+  }
+  h2{
+    margin-bottom: 40px;
+  }
+   h3{
+    text-transform: capitalize;
+    margin-bottom: 8px;
+  }
+  .content{
+    margin-left: 20px;
+  }
+
+  /* index styles */
+
+  /* details styles */
+
+  /* create styles */
+  .create-blog form{
+    max-width: 400px;
+    margin: 0  auto;
+    
+  }
+  .create-blog input,
+  .create-blog textarea{
+      border: 2px solid black;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+  }
+  .create-blog label{
+    display: block;
+    margin-top: 24px;
+  }
+  textarea{
+    height: 120px;
+  }
+  .create-blog button{
+    margin-top: 20px;
+    background: crimson;
+    color: white;
+    padding: 6px;
+    border: 0;
+    font-size: 1.2em;
+    cursor: pointer;
+  }

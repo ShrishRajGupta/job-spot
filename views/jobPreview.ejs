@@ -1,0 +1,29 @@
+<%- include("partials/header"); %>
+
+    <section class="page-content">
+            <div>
+                <h3 class="heading">
+                    <a href="/job-post/<%- article._id %>">
+                        <%- article.jobTitle %>
+                    </a>
+                </h3>
+                <h3>
+                    Descripiton : 
+                    <p class="snippet">
+                        <%- article.jobDesc %>
+                    </p>
+                </h3>
+                <h4>
+                    Skills 🛠️: 
+                    <%- article.skills %>
+                </h4>
+                <h4>
+                    duration 🕒= <%- article.duration  %>
+                </h4>
+                <h4>
+                    Stipend💰 = <%- article.stipend %>
+                </h4>
+            </div>
+
+    </section>
+    <%- include("partials/footer"); %>

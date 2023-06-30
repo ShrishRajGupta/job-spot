@@ -19,8 +19,8 @@ app.set('view engine','ejs')
 app.set('views','./views')
 
 // Routes
-
-app.use("/admin",require("./routes/adminRoutes"));
+app.use('/',require('./routes/mainRoutes.js'))
+app.use("/admin",require("./routes/adminRoutes.js"));
 
 
 // 404

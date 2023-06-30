@@ -1,4 +1,4 @@
-const env = require('dotenv').config()
+require('dotenv').config()
 const POST  = require("../models/PostModel");
 
 const adminJobForm = async(req,res)=>{
@@ -11,7 +11,7 @@ const adminJobForm = async(req,res)=>{
             duration: duration,
             stipend: stipend
         })
-        res.status(200).json(form);
+        res.status(200).redirect('/');
     } catch (err) {
         console.log(err);
         res.status(500).json({msg:"Sever error"});        
