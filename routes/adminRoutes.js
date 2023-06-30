@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const POST  = require("../models/PostModel");
 const router = express.Router();
 const urlEncodedParser = bodyParser.urlencoded({extended: false});
 router.get("/",function(req,res){
@@ -16,7 +16,14 @@ router.post("/jobpostform",urlEncodedParser,function(req,res){
     const skills = req.body.skills;
     const duration = req.body.duration;
     const stipend = req.body.stipend;
-    console.log(Jobtitle);
+    const post = new POST({
+        JobTitle:Jobtitle,
+        JobDesc:JobDesc,
+        Skills: skills,
+        Duration: duration,
+        Stipend: stipend
+    })
+    post.save();
 });
 
 module.exports = router;
