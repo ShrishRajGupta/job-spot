@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Login Form </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style3.css">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <section class="container forms">
+
+        <!-- Login form  -->
+        <div class="form login">
+            <div class="form-content">
+                <header>Login as <%-path%></header>
+                <form action="/<%- path %>/login" method="post">
+                    <div class="field input-field">
+                        <input type="text" name="username" placeholder="Enter your username &#128512;" class="input" required autocomplete="off">
+                    </div>
+                    <div class="field input-field">
+                        <input type="email" name="email" placeholder="Enter your email &#128512;" class="input" required autocomplete="off">
+                    </div>
+
+                    <div class="field input-field">
+                        <input type="password" name="password" placeholder="Enter password 🙈" class="password" required autocomplete="off">
+                        <i class='bx bx-hide eye-icon'></i>
+                    </div>
+
+                    <div class="form-link">
+                        <a href="#" class="forgot-pass">Forgot password?</a>
+                    </div>
+
+                    <div class="field button-field">
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+
+                <div class="form-link">
+                    <span>Don't have an account? <a href="/<%- path %>/register" class="link signup-link">Signup</a></span>
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="media-options">
+                <a href="/<%-alt%>/login" class="field facebook">
+                    <i class='bx bxs-user'></i>
+                    <span>Login as <%- alt %></span>
+                </a>
+            </div>
+
+            <div class="media-options">
+                <a href="#" class="field google">
+                    <img src="/img/google.png" alt="" class="google-img">
+                    <span>Login with Google</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Signup Form -->
+
+        
+    </section>
+
+    <!-- JavaScript -->
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

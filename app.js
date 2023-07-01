@@ -2,6 +2,7 @@ const express = require('express')
 const app=express()
 require('dotenv').config()
 const bodyParser = require('body-parser')
+const cookieParser=require('cookie-parser');
 
 // DB
 const connectDB = require('./config/conn.js');
@@ -13,6 +14,7 @@ app.use(express.json());
 // Body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(cookieParser());
 
 // template engine  
 app.set('view engine','ejs')
@@ -20,6 +22,7 @@ app.set('views','./views')
 
 // Routes
 app.use('/',require('./routes/mainRoutes.js'))
+app.use('/user',require('./routes/userRoutes.js'))
 app.use("/admin",require("./routes/adminRoutes.js"));
 
 
