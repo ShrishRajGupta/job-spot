@@ -11,6 +11,7 @@ const adminJobForm = async(req,res)=>{
             duration: duration,
             stipend: stipend
         })
+        form.save();
         res.status(200).redirect('/');
     } catch (err) {
         console.log(err);

@@ -41,13 +41,13 @@
     landing page
 =======================*/
 
-body{
+/* body{
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 2px 2px;
   padding: 0 20px;
   font-family: 'Noto Serif', serif;
   max-width: 1200px;
-}
+} */
 p, h1, h2, h3, a, ul{
   margin: 0;
   padding: 0;

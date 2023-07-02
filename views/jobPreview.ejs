@@ -1,29 +1,48 @@
-<%- include("partials/header"); %>
 
-    <section class="page-content">
-            <div>
-                <h3 class="heading">
-                    <a href="/job-post/<%- article._id %>">
-                        <%- article.jobTitle %>
-                    </a>
-                </h3>
-                <h3>
-                    Descripiton : 
-                    <p class="snippet">
-                        <%- article.jobDesc %>
-                    </p>
-                </h3>
-                <h4>
-                    Skills 🛠️: 
-                    <%- article.skills %>
-                </h4>
-                <h4>
-                    duration 🕒= <%- article.duration  %>
-                </h4>
-                <h4>
-                    Stipend💰 = <%- article.stipend %>
-                </h4>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>JobPreview</title>
+    <style>
+        .preview{
+            display: flexbox;
+            justify-content: center;
+            border: 1px solid black;
+            box-shadow: 4cap;
+            
+        }
+    </style>
+</head>
+<body>
+    <section class="preview">
+        <div>
+            <h3 class="heading">
+                <a href="/job-post/<%- article._id %>">
+                    <%- article.jobTitle %>
+                </a>
+            </h3>
+            <h3>
+                Descripiton : 
+                <p class="snippet">
+                    <%- article.jobDesc %>
+                </p>
+            </h3>
+            <h4>
+                Skills 🛠️: 
+                <%- article.skills %>
+            </h4>
+            <h4>
+                duration 🕒= <%- article.duration  %>
+            </h4>
+            <h4>
+                Stipend💰 = <%- article.stipend %>
+            </h4>
+        </div>
 
-    </section>
-    <%- include("partials/footer"); %>
+</section>
+</body>
+</html>
+    
