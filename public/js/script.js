@@ -1,3 +1,7 @@
+// /*======================
+//     login and signup page
+// =======================*/
+
 const forms = document.querySelector(".forms"),
       pwShowHide = document.querySelectorAll(".eye-icon"),
       links = document.querySelectorAll(".link");
