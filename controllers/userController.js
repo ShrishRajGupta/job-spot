@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken');
 require('dotenv').config()
-const UserDB = require('../models/UserModel.js')
+const UserDB = require('../models/UserModel.js');
+const { checkF } = require('../middleware/generateJWT.js');
 
 
 const getRegisterForm = async(req,res)=>{
@@ -35,7 +35,7 @@ const registerUser = async (req, res) => {
         return res.cookie("authorization", member.token, {httpOnly: true,
                 secure: true,
             })
-            .status(200).json(member);
+            .status(200).redirect('/');
     }
     catch (err) {
         console.log(err);
@@ -43,13 +43,12 @@ const registerUser = async (req, res) => {
     }
 };
 
-
+//@desc = a get request to verify logged in user 
 const getLoginForm = async (req,res)=>{
     res.status(200).render('login',{path:'user',alt:'company'});
 }
 
-//@desc = a get request to verify logged in user 
-//response = 
+//@desc = a post request to verify logged in user 
 const loginUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -73,7 +72,7 @@ const loginUser = async (req, res) => {
                 .cookie("authorization", user.token, {httpOnly: true,
                     secure: true,
                 })
-                .status(200).json(user);
+                .status(200).redirect('/');
         } else {
             res.status(401).redirect('/user/register'); // redirect to register
             throw new Error('Validation Error');
@@ -85,24 +84,6 @@ const loginUser = async (req, res) => {
         res.status(500).json({msg:"Server error"}) // render 500
     }
 };
-
-// Generates JWT
-const checkF = function (user) {
-    try {
-        const token = jwt.sign({
-            user: { username: user.username, email: user.email, id: user._id }
-        },
-            process.env.ACCESS_TOKEN,
-            {
-                expiresIn: "2h"
-            }
-        );
-        return token;
-    }
-    catch {
-        throw new Error('Validation Error');
-    }
-}
 
 module.exports = {
     getLoginForm,

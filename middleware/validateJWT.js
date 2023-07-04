@@ -8,8 +8,7 @@ const authenticateToken = (req, res, next) => {
 
     if (!token) {
         console.log(`Token not found`);
-        res.redirect('/user/register')
-            .status(401); 
+        res.redirect('/user/register');
     }
 
     try {

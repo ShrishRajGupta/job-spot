@@ -3,14 +3,18 @@ const POST  = require("../models/PostModel");
 // @routes = /
 // @desc = Displays all jobs
 const mainDisplay = async(req,res)=>{
+    
     try {
         const jobs= await POST.find();
         if(!jobs){
             res.status(403)
             .json({ msg: "No jobs in DB" });
         }
+        let val=true;
+        if (req.cookies.authorization === undefined || req.cookies.authorization === null)
+            val=false;
         res.status(200)
-            .render('landingPage',{jobs});
+            .render('landingPage',{jobs,val});
     } catch (err) {
         console.log(err);  
         res.status(500).json({msg:"Server error"});      

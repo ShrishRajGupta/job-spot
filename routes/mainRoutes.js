@@ -5,6 +5,13 @@ const { getRegisterForm, getLoginForm, loginCompany, registerCompany } = require
 const authenticateToken = require('../middleware/validateJWT');
 
 router.get('/', mainDisplay);
+router.get('/logout',async(req,res)=>{
+    return res
+    .clearCookie("authorization")
+    .status(200)
+    .redirect('/');
+})
+
 router.route('/company/login')
     .get(getLoginForm)
     .post(loginCompany)

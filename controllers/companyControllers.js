@@ -1,13 +1,11 @@
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken');
 require('dotenv').config()
 const Admin = require('../models/AdminModel');
+const { checkF } = require('../middleware/generateJWT');
 
 
 const getRegisterForm = async(req,res)=>{
     res.status(200).render('register',{path:'company',alt:'user'});
-
-    // res.status(200).json({msg:"Route under devlopment"});
 }
 
 //@desc = a post request to register new user
@@ -37,7 +35,7 @@ const registerCompany = async (req, res) => {
         return res.cookie("authorization", member.token, {httpOnly: true,
                 secure: true,
             })
-            .status(200).json(member);
+            .status(200).redirect('/');
     }
     catch (err) {
         console.log(err);
@@ -75,7 +73,7 @@ const loginCompany = async (req, res) => {
                 .cookie("authorization", user.token, {httpOnly: true,
                     secure: true,
                 })
-                .status(200).json(user);
+                .status(200).redirect('/');
         } else {
             res.status(401).redirect('/company/register'); // redirect to register
             throw new Error('Validation Error');
@@ -87,24 +85,6 @@ const loginCompany = async (req, res) => {
         res.status(500).json({msg:"Server error"}) // render 500
     }
 };
-
-// Generates JWT
-const checkF = function (user) {
-    try {
-        const token = jwt.sign({
-            user: { username: user.username, email: user.email, id: user._id }
-        },
-            process.env.ACCESS_TOKEN,
-            {
-                expiresIn: "2h"
-            }
-        );
-        return token;
-    }
-    catch {
-        throw new Error('Validation Error');
-    }
-}
 
 module.exports = {
     getLoginForm,
