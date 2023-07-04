@@ -4,15 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <title>JobPreview</title>
     <style>
         .preview{
             display: flexbox;
             justify-content: center;
-            border: 1px solid black;
-            box-shadow: 4cap;
-            
+            box-shadow: 4cap;   
         }
     </style>
 </head>
@@ -40,8 +42,20 @@
             <h4>
                 Stipend💰 = <%- article.stipend %>
             </h4>
+            <div>
+                <button><i class="fa fa-thumbs-up" aria-hidden="true"></i>LIKE</button>
+                <button style="padding: 5px;"><i class="fa-sharp fa-light fa-comment"></i>Comment</button>
+              </div>
         </div>
 
+        <form action="/job-post/<%- article._id %>" method="post">
+                <label for="comment">Comments
+                </label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment" placeholder="Type your comment here"></textarea>
+                <button type="submit"class="btn btn-primary">Submit</button>
+
+        </form>
+        
 </section>
 </body>
 </html>

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const commentPost = require("../models/commentModel");
 
 const postModel = mongoose.Schema({
     jobTitle:{
@@ -20,7 +21,12 @@ const postModel = mongoose.Schema({
     stipend:{
         type:String,
         required:[true,"ENTER THE STIPEND"]
+    },
+    comment:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'commentPost'
     }
+
 });
 
 module.exports = mongoose.model("POST",postModel);

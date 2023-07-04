@@ -1,5 +1,7 @@
 
 const POST  = require("../models/PostModel");
+const commentModel = require("../models/commentModel");
+
 // @routes = /
 // @desc = Displays all jobs
 const mainDisplay = async(req,res)=>{
@@ -26,14 +28,29 @@ const getJobById = async(req,res)=>{
         if(!job)
             res.status(404).render('404');
         res.status(200).render('jobPreview',{article:job});
-        
+
     } catch (err) {
         console.log(err);
         res.status(500).json({msg:"Server error"});      
     }
 }
+const postComment = async (req,res)=>{
+    const {comment} = req.body.comment;
+    try{
+        console.log(comment);
+        const newComment = new commentModel({
+        comment: comment
+        });
+        newComment.save();
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({msg:"Sever error"});        
+    }
+    
+}
 
 module.exports={
     mainDisplay,
-    getJobById
+    getJobById,
+    postComment
 }
