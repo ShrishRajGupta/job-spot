@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
-const commentPost = require("../models/commentModel");
 
 const postModel = mongoose.Schema({
+    user_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"Admin"
+    },
     jobTitle:{
         type:String,
         required:[true,"ENTER THE JOB TITLE"]
@@ -22,10 +26,10 @@ const postModel = mongoose.Schema({
         type:String,
         required:[true,"ENTER THE STIPEND"]
     },
-    comment:{
+    comments:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'commentPost'
-    }
+        ref: 'commentModel'
+    }]
 
 });
 

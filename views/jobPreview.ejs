@@ -9,6 +9,15 @@
   <link rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css">
+
+<!-- Landing Page css styles4.css -->
+
+  <link rel="stylesheet" href="/css/styles4.css">   
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>JobPreview</title>
     <style>
         .preview{
@@ -19,11 +28,40 @@
     </style>
 </head>
 <body>
+  <!-- navbar -->
+
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-card" id="myNavbar">
+          <a href="/" class="w3-bar-item w3-button w3-wide">LOGO</a>
+          <!-- Right-sided navbar links -->
+          <div class="w3-right w3-hide-small">
+            <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+            <!-- <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+            <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a> -->
+            <a href="/admin/jobpostform" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> CREATE</a>
+            <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+            <a href="/logout" class="w3-bar-item w3-button"><i class='bx bxs-log-out' ></i> Logout</a>
+    
+          </div>
+          <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+      
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+      </div>
+      <!-- Nav bar ends ------------- -->
+
     <section class="preview">
+        <br>
+        <br>
         <div>
-            <h3 class="heading">
-                <a href="/job-post/<%- article._id %>">
-                    <%- article.jobTitle %>
+            <h2 class="heading">
+                <a href="/job-post/<%-article._id  %>">
+                    <b>
+                        <%- article.jobTitle %>
+                    </b>
+                    
                 </a>
             </h3>
             <h3>
@@ -48,15 +86,49 @@
               </div>
         </div>
 
-        <form action="/job-post/<%- article._id %>" method="post">
+        <form action="/job-post/<%- (article._id.toString()) %>" method="post">
                 <label for="comment">Comments
                 </label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment" placeholder="Type your comment here"></textarea>
                 <button type="submit"class="btn btn-primary">Submit</button>
 
         </form>
+        <div>
+            <% commentArr.forEach(function(element){ %>
+                <h3><%- element.user %></h3>
+                <h4><%- element.comment %></h4>
+
+            <% }) %>
+
+        </div>
         
 </section>
+<script>
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+    
+    
+    // Toggle between showing and hiding the sidebar when clicking the menu icon
+    var mySidebar = document.getElementById("mySidebar");
+    
+    function w3_open() {
+      if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+      } else {
+        mySidebar.style.display = 'block';
+      }
+    }
+    
+    // Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+    }
+    </script>
 </body>
 </html>
     

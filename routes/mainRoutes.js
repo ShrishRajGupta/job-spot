@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { mainDisplay, getJobById, postComment } = require("../controllers/mainController");
 const { getRegisterForm, getLoginForm, loginCompany, registerCompany } = require("../controllers/companyControllers");
-const authenticateToken = require('../middleware/validateJWT');
 
 router.get('/', mainDisplay);
 router.get('/logout',async(req,res)=>{
@@ -11,6 +10,7 @@ router.get('/logout',async(req,res)=>{
     .status(200)
     .redirect('/');
 })
+const authenticateToken = require('../middleware/validateJWT');
 
 router.route('/company/login')
     .get(getLoginForm)
@@ -22,8 +22,8 @@ router.route('/company/register')
 
 
 
-router.get('/job-post/:id',authenticateToken, getJobById);
-router.post('/job-post/:id',postComment);
+    router.get('/job-post/:id',authenticateToken, getJobById);
+    router.post('/job-post/:id',authenticateToken,postComment);
     
 
 module.exports = router;
