@@ -6,6 +6,7 @@
   <title>    Job-Spot  </title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Landing Page css styles4.css -->
   <link rel="stylesheet" href="/css/styles4.css">   
@@ -13,17 +14,28 @@
 </head>
 
 <body>
+  <!-- navbar -->
+
   <div class="w3-top">
     <div class="w3-bar w3-white w3-card" id="myNavbar">
-      <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a>
+      <a href="/" class="w3-bar-item w3-button w3-wide">LOGO</a>
       <!-- Right-sided navbar links -->
+      <% if(val){ %>
       <div class="w3-right w3-hide-small">
         <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
         <!-- <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
         <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a> -->
         <a href="/admin/jobpostform" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> CREATE</a>
         <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+        <a href="/logout" class="w3-bar-item w3-button"><i class='bx bxs-log-out' ></i> Logout</a>
+
       </div>
+      <% }else{ %>
+      <div class="w3-right w3-hide-small">
+        <a href="/user/login" class="w3-bar-item w3-button"> <i class='bx bx-log-in'></i>Login</a>
+        <a href="/user/register" class="w3-bar-item w3-button">Register</a>
+        </div>
+        <% } %>
       <!-- Hide right-floated links on small screens and replace them with a menu icon -->
   
       <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
