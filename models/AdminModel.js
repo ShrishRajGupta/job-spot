@@ -15,7 +15,11 @@ const adminSchema = mongoose.Schema({
     },
     token:{
         type:String
-    }
+    },
+    posts:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'POST'
+    }]
 },{
     timestamps:true
 });
