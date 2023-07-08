@@ -4,6 +4,8 @@ const { mainDisplay, getJobById, postComment } = require("../controllers/mainCon
 const { getRegisterForm, getLoginForm, loginCompany, registerCompany } = require("../controllers/companyControllers");
 
 router.get('/', mainDisplay);
+router.post('/', mainDisplay);
+
 router.get('/logout',async(req,res)=>{
     return res
     .clearCookie("authorization")
