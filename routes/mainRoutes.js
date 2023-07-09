@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { mainDisplay, getJobById, postComment } = require("../controllers/mainController");
 const { getRegisterForm, getLoginForm, loginCompany, registerCompany } = require("../controllers/companyControllers");
+const authenticateToken = require('../middleware/validateJWT');
 
-router.get('/', mainDisplay);
-router.post('/', mainDisplay);
+router.route('/')
+    .get(mainDisplay)
+    .post(authenticateToken,mainDisplay);
 
 router.get('/logout',async(req,res)=>{
     return res
@@ -12,7 +14,6 @@ router.get('/logout',async(req,res)=>{
     .status(200)
     .redirect('/');
 })
-const authenticateToken = require('../middleware/validateJWT');
 
 router.route('/company/login')
     .get(getLoginForm)

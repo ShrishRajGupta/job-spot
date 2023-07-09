@@ -3,28 +3,27 @@ const UserDB = require('../models/UserModel.js');
 
 
 // GET /api/search?q=searchTerm
-const searchAPI= async (searchTerm) => {
+const searchAPI= async (term) => {
+ const searchTerm=term.toLowerCase();
     
     try {
       // Use MongoDB's text search to find matching items
-      const admins = await Admin.find({ 
-          "username":{$regex:searchTerm,$options:"i"},
-          "email":{$regex:searchTerm,$options:"i"},
-        });
-      const users = await UserDB.find({ 
-          "username":{$regex:searchTerm,$options:"i"},
-          "email":{$regex:searchTerm,$options:"i"},
-        });
+      const results = [];
 
-        // console.log(items);
-        const results = [];
+      const users = await UserDB.find({$or:[{ 
+          'username':{$regex:searchTerm,$options:"i"}
+        }]});
+        users.forEach(ele => {
+          results.push({username:ele.username,email:ele.email,_id:ele._id});            
+      });
+
+      const admins = await Admin.find({ 
+          "username":{$regex:searchTerm,$options:"i"}
+        });
         admins.forEach(ele => {
             results.push({username:ele.username,email:ele.email,_id:ele._id});            
         });
-
-        users.forEach(ele => {
-            results.push({username:ele.username,email:ele.email,_id:ele._id});            
-        });
+       
         return JSON.parse(JSON.stringify(results));
     } 
     catch (err) {

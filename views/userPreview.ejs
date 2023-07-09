@@ -19,57 +19,16 @@
 
     <!-- Header  -----------------------------------------------       -->
     <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <!-- Search bar-------------------- -->
-        <div class="search">
-            <span class="searchIcons">
-            </span>
-            <input id="searchInput" type="text" placeholder="Search" />
-        </div>
-        <span class="searchIcons" id="info">
-        </span>
-        <span id="bellIcon">
-        </span>
-
         <!-- Email-----  -->
-        <span id="name"><%- personelData.email %></span>
-        <span id="markdown">
+        <span id="name">
+           Email - <%- userDes.email %>
         </span>
+        <span id="markdown"><%- userDes.username %></span>
         <div class="header_img">
-            <img src="/img/tokito.jpeg" alt="img">
+        <a href="/"><i class='bx bxs-home'></i></a>
+
         </div>
     </header>
-
-
-    <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
-            <!-- MEnu bar  ------------------------------------------ -->
-            <div>
-                <a href="/" class="w3-bar-item w3-button w3-wide">
-                    <img src="/img/icons8-job-96.png" alt="LOGO" width="40">
-                    <span class="nav_logo-name">JobPost</span>
-                </a>
-                <div class="nav_list">
-                    <a href="/" class="nav_link active"><i class='bx bx-home nav_icon'></i> <span
-                            class="nav_name">Home</span></a>
-                    <!-- <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a> -->
-                    <a href="/admin" style="border-right: 2px solid black ;" class="nav_link"> <i
-                            class='bx bxs-dashboard'></i> <span style="color: black"
-                            class="nav_name">DashBoard</span></a>
-                    <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span
-                            class="nav_name">Chats</span></a>
-                    <a href="/admin/jobpostform" class="nav_link"> <i class='bx bxs-plus-square'></i> <span
-                            class="nav_name">Create</span> </a>
-                </div>
-            </div>
-            <div style="display: flex ; flex-direction: column ; justify-content: center ">
-                <a href="#setting" class="nav_link"> <i class='bx bx-cog nav_icon'></i> <span
-                        class="nav_name">Settings</span> </a>
-                <a href="/logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
-                        class="nav_name">LogOut</span> </a>
-            </div>
-        </nav>
-    </div>
 
 
     <main>
@@ -95,9 +54,7 @@
                                         <div
                                             style="display: flex ; align-items: center ; justify-content: space-between">
                                             <h5><%- post.jobTitle %></h5>
-                                            <form action="/admin/delete/<%-post._id.toString()%>" method="get">
-                                                <button type="submit"><i class='bx bxs-trash-alt'></i>Delete</button>
-                                            </form>
+                                            
                                         </div>
                                         <p class="card-text" style="font-size: 0.8rem"><%- post.jobDesc %></p>
                                         <span
@@ -140,6 +97,7 @@
             <div id="completed">
                 <div style="display: flex ;align-items: center; justify-content: space-between">
                     <span style="font-size: 1.2rem">Following </span>
+                   
                 </div>
                 <!-- Card ----------------- -->
                 <div class="card" style="border-radius: 0.5rem">

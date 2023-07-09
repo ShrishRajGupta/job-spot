@@ -70,16 +70,16 @@
     <!-- <br> -->
     <div class="search-container">
       <% if (typeof locals.searchJSON !="undefined" && locals.searchJSON !=null && locals.searchJSON.length !=null && locals.searchJSON.length> 0) { %>
-        <% locals.searchJSON.forEach((post)=>{%>
-          <% if ((typeof post==null) || (post==null) ){ %>
+        <% locals.searchJSON.forEach((person)=>{%>
+          <% if ((typeof person==null) || (person==null) ){ %>
             <% } else{ %>
-              <a href="/admin/preview/<%-post._id %>">
+              <a href="/admin/preview/<%-person._id %>">
                 <div id="search-results" style="border-radius: 0.2rem">
                   <div id="search-input">
-                    <h5><%- post.username %></h5>
+                    <h5><%- person.username %></h5>
                     <!-- <div style="display: flex ; align-items: center ; justify-content: space-between">
                     </div> -->
-                    <p class="card-text" style="font-size: 0.8rem"><%- post.email %></p>
+                    <p class="card-text" style="font-size: 0.8rem"><%- person.email %></p>
 
                   </div>
                 </div>
