@@ -1,7 +1,6 @@
 require('dotenv').config()
 const POST  = require("../models/PostModel");
-const Admin = require('../models/AdminModel');
-const UserDB = require('../models/UserModel.js');
+const { postThumbnail, adminDetails } = require('../api/preview');
 
 
 // @routes = "/admin/jobpostform"
@@ -10,13 +9,7 @@ const adminJobForm = async(req,res)=>{
     const {jobTitle,titleDesc,skills,duration,stipend}=req.body;
     // Function to check for company
     const company_id= req.user.id;
-    const admin=await Admin.findById(company_id);
-    if(!admin){
-        admin= await UserDB.findById(id);
-        if(!admin)
-            res.status(403).json({msg:"Unauthorized access"})
-    }
-   
+    const admin = await adminDetails(company_id.toString());   
     try {
         const form= new POST({
             user_id:req.user.id,
@@ -38,34 +31,25 @@ const adminJobForm = async(req,res)=>{
     
 }
 // @routes = "/admin"
-
+// @desc = Get req for companies to view their blogs on Dashboard.ejs
 const dashBoardPreviw = async(req,res)=>{
     const {id} = req.user;
-    const admin= await Admin.findById(id);
-    if(!admin){
-        admin= await UserDB.findById(id);
-        if(!admin)
-            res.status(403).json({msg:"Unauthorized access"})
-    }
-    
-    const postArr = [];
-    const arr= admin.posts;
-
-    await Promise.all (arr.map (async(ele)=>{
-        if(ele!=null){
-
-            
-            let data = await POST.findById(ele.toString());
-            postArr.push(data); // compromise on data security-
-        }
-    }))
-
+    const admin= await adminDetails(id.toString());
+    const postArr= await postThumbnail(id.toString());
 
     const personelData = {name:admin.username,email:admin.email,id:admin._id};
     res.status(200).render("DashBoard",{personelData,arr:postArr});
 }
 
-
+// @routes = "/admin/preview/:id"
+// @desc = Get req for companies to view their blogs in preview.ejs
+const previewUser = async(req,res)=>{
+    const id= req.params.id.toString();
+    const userDes = await adminDetails(id);
+    const postArr= await postThumbnail(id);
+    // res.status(200).json({userDes,postArr})
+    res.status(200).render("userPreview",{userDes,arr:postArr});
+}
 // @routes = "/admin/delete/:id"
 // @desc = Delete req for companies to delete jobs
 const deleteBlog = async (req,res)=>{
@@ -79,8 +63,10 @@ const deleteBlog = async (req,res)=>{
         res.status(500).json({msg:`server error // @routes = "/admin/delete/:id" `});
     res.status(200).redirect('/admin');
 }
+
 module.exports={
     adminJobForm,
     dashBoardPreviw,
-    deleteBlog
+    deleteBlog,
+    previewUser
 }

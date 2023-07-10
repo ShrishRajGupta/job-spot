@@ -1,4 +1,5 @@
 
+const { searchAPI } = require("../api/searchAPI");
 const POST  = require("../models/PostModel");
 const commentModel = require("../models/commentModel");
 
@@ -13,9 +14,15 @@ const mainDisplay = async(req,res)=>{
             res.status(403)
             .json({ msg: "No jobs in DB" });
         }
+        const searchPar = req.body.searchContent;
+        if (typeof searchPar !="undefined" && searchPar !=null && searchPar.length !=0)
+            res.locals.searchJSON= await searchAPI(searchPar);
+
+
         let val=true;
         if (req.cookies.authorization === undefined || req.cookies.authorization === null)
             val=false;
+
         res.status(200)
             .render('landingPage',{jobs,val});
     } catch (err) {

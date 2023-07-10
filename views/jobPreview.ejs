@@ -32,7 +32,8 @@
 
     <div class="w3-top">
         <div class="w3-bar w3-white w3-card" id="myNavbar">
-          <a href="/" class="w3-bar-item w3-button w3-wide">LOGO</a>
+      <a href="/" class="w3-bar-item w3-button w3-wide"><img src="/img/icons8-job-96.png" alt="LOGO" width="30"></a>
+
           <!-- Right-sided navbar links -->
           <div class="w3-right w3-hide-small">
             <a href="/admin" class="w3-bar-item w3-button"><i class='bx bxs-dashboard'></i>DashBoard</a>
@@ -102,32 +103,8 @@
         </div>
         
 </section>
-<script>
-    // Modal Image Gallery
-    function onClick(element) {
-      document.getElementById("img01").src = element.src;
-      document.getElementById("modal01").style.display = "block";
-      var captionText = document.getElementById("caption");
-      captionText.innerHTML = element.alt;
-    }
-    
-    
-    // Toggle between showing and hiding the sidebar when clicking the menu icon
-    var mySidebar = document.getElementById("mySidebar");
-    
-    function w3_open() {
-      if (mySidebar.style.display === 'block') {
-        mySidebar.style.display = 'none';
-      } else {
-        mySidebar.style.display = 'block';
-      }
-    }
-    
-    // Close the sidebar with the close button
-    function w3_close() {
-        mySidebar.style.display = "none";
-    }
-    </script>
+<script src="/js/script.js"></script>
+
 </body>
 </html>
     
