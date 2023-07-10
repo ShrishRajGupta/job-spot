@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
-
-const adminSchema = mongoose.Schema({
+const findOrCreate = require("mongoose-findorcreate");
+const adminSchema = new mongoose.Schema({
     username:{
         type: String,
-        required:[true,"Enter your name"]
+        // required:[true,"Enter your name"]
     },
     email:{
         type: String,
-        required:[true,"ENTER YOUR EMAIL"]
+        // required:[true,"ENTER YOUR EMAIL"]
     },
     password:{
         type:String,
-        required:[true,"Enter your Password"]
+        // required:[true,"Enter your Password"]
     },
     token:{
         type:String
@@ -23,5 +23,5 @@ const adminSchema = mongoose.Schema({
 },{
     timestamps:true
 });
-
+adminSchema.plugin(findOrCreate);
 module.exports = mongoose.model("Admin",adminSchema);

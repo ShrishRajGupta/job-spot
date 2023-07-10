@@ -39,7 +39,7 @@ const registerCompany = async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({msg:"Server error"}) // render 500
+        res.status(500).json({msg:"Server error REGISTER"}) // render 500
     }
 };
 

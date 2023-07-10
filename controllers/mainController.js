@@ -7,6 +7,7 @@ const commentModel = require("../models/commentModel");
 const mainDisplay = async(req,res)=>{
     
     try {
+        
         const jobs= await POST.find();
         if(!jobs){
             res.status(403)
@@ -19,7 +20,7 @@ const mainDisplay = async(req,res)=>{
             .render('landingPage',{jobs,val});
     } catch (err) {
         console.log(err);  
-        res.status(500).json({msg:"Server error"});      
+        res.status(500).json({msg:"Server error MAIN"});      
     }
 }
 
