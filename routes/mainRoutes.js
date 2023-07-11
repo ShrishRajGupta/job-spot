@@ -6,13 +6,16 @@ const authenticateToken = require('../middleware/validateJWT');
 
 router.route('/')
     .get(mainDisplay)
-    .post(authenticateToken,mainDisplay);
+    .post(authenticateToken, mainDisplay);
 
-router.get('/logout',async(req,res)=>{
+router.get('/logout', async (req, res) => {
+    req.session=null;
+    req.logOut();
     return res
-    .clearCookie("authorization")
-    .status(200)
-    .redirect('/');
+        .clearCookie("authorization")
+        .clearCookie('authorization.sig')
+        .status(200)
+        .redirect('/');
 })
 
 router.route('/company/login')
@@ -25,8 +28,8 @@ router.route('/company/register')
 
 
 
-    router.get('/job-post/:id',authenticateToken, getJobById);
-    router.post('/job-post/:id',authenticateToken,postComment);
-    
+router.get('/job-post/:id', authenticateToken, getJobById);
+router.post('/job-post/:id', authenticateToken, postComment);
+
 
 module.exports = router;

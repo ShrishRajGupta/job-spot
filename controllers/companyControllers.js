@@ -31,11 +31,9 @@ const registerCompany = async (req, res) => {
         });
 
         // Token generation and storage
-        member.token = checkF(member);
-        return res.cookie("authorization", member.token, {httpOnly: true,
+        return res.cookie("authorization", checkF(member), {httpOnly: true,
                 secure: true,
-            })
-            .status(200).redirect('/');
+            }).status(200).redirect('/');
     }
     catch (err) {
         console.log(err);
@@ -68,12 +66,10 @@ const loginCompany = async (req, res) => {
 
         // Generation of JWT
         if (user && check) {
-            user.token = checkF(user);
             return res
-                .cookie("authorization", user.token, {httpOnly: true,
+                .cookie("authorization", checkF(user), {httpOnly: true,
                     secure: true,
-                })
-                .status(200).redirect('/');
+                }).status(200).redirect('/');
         } else {
             res.status(401).redirect('/company/register'); // redirect to register
             throw new Error('Validation Error');

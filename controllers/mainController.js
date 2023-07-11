@@ -20,7 +20,7 @@ const mainDisplay = async(req,res)=>{
 
 
         let val=true;
-        if (req.cookies.authorization === undefined || req.cookies.authorization === null)
+        if ((req.cookies.authorization === undefined || req.cookies.authorization === null) && !(req.isAuthenticated()))
             val=false;
 
         res.status(200)

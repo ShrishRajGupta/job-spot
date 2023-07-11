@@ -9,7 +9,7 @@ const getRegisterForm = async(req,res)=>{
 }
 
 //@desc = a post request to register new user
-//response = 
+// @
 const registerUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -31,8 +31,8 @@ const registerUser = async (req, res) => {
         });
 
         // Token generation and storage
-        member.token = checkF(member);
-        return res.cookie("authorization", member.token, {httpOnly: true,
+        const token = checkF(member);
+        return res.cookie("authorization", token, {httpOnly: true,
                 secure: true,
             })
             .status(200).redirect('/');
@@ -67,9 +67,9 @@ const loginUser = async (req, res) => {
 
         // Generation of JWT
         if (user && check) {
-            user.token = checkF(user);
+            const token  = checkF(user)
             return res
-                .cookie("authorization", user.token, {httpOnly: true,
+                .cookie("authorization", token, {httpOnly: true,
                     secure: true,
                 })
                 .status(200).redirect('/');

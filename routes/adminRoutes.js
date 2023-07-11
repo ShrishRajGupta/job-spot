@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const {Router} = require("express");
+const router = Router();
 
 const { adminJobForm, dashBoardPreviw, deleteBlog, previewUser } = require("../controllers/adminControllers");
 const authenticateToken = require('../middleware/validateJWT');

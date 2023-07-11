@@ -1,8 +1,8 @@
-const express = require("express");
+const {Router} = require("express");
 const { loginUser, registerUser, getLoginForm, getRegisterForm } = require("../controllers/userController");
-const router = express.Router();
+const router = Router();
 
-
+// route begins with 'user'
 router.route('/login')
     .get(getLoginForm)
     .post(loginUser)
