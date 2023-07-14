@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="icon" type="image/png" href="/img/icons8-job-96.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -81,23 +81,31 @@
                 Stipend💰 = <%- article.stipend %>
             </h4>
             <div>
-                <button><i class="fa fa-thumbs-up" aria-hidden="true"></i>LIKE</button>
+                
+                <!-- Like button  -->
+                <a href="/job-post/like/<%-  (article._id.toString()) %>">
+                    <button id="like-btn" onclick="buttonColor()"><i class="fa fa-thumbs-up" aria-hidden="false"></i>Like <%- article.likes.length %></button>
+                </a>
                 <button style="padding: 5px;"><i class="fa-sharp fa-light fa-comment"></i>Comment</button>
-              </div>
+            </div>
         </div>
 
         <form action="/job-post/<%- (article._id.toString()) %>" method="post">
                 <label for="comment">Comments
                 </label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment" placeholder="Type your comment here"></textarea>
-                <button type="submit"class="btn btn-primary">Submit</button>
+                <button type="submit"class="btn btn-primary">Comment</button>
 
         </form>
         <div>
             <% commentArr.forEach(function(element){ %>
-                <h3><%- element.user %></h3>
-                <h4><%- element.comment %></h4>
-
+                <% if ((typeof element==null) || (element==null) ){ %>
+                    <% } else{ %>
+                <a href="/admin/preview/<%-element.user_id %>">
+                    <h3><%- element.username %></h3>
+                    <h4><%- element.comment %></h4>
+                </a>
+                <% } %>
             <% }) %>
 
         </div>

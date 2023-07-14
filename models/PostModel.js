@@ -26,6 +26,9 @@ const postModel = mongoose.Schema({
         type:String,
         required:[true,"ENTER THE STIPEND"]
     },
+    likes:[{
+        type:String,
+    }],
     comments:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'commentModel'

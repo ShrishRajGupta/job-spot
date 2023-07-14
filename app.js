@@ -48,6 +48,7 @@ app.use("/auth",require("./routes/auth.js"));
 
 // Routes after getting verified by google ends
 app.use('/',require('./routes/mainRoutes.js'))
+app.use('/job-post',require('./routes/accessoriesRoutes.js'))
 app.use('/user',require('./routes/userRoutes.js'))
 app.use("/admin",require("./routes/adminRoutes.js"));
 

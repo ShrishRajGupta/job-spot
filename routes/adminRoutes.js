@@ -10,8 +10,12 @@ router.get("/jobpostform",authenticateToken,function(req,res){
     res.status(200).render('JobPostForm')
 });
 
+// id = admin id in adminDB
 router.get('/preview/:id',authenticateToken,previewUser)
+router.get('/preview//:id',authenticateToken,previewUser)
+
 
 router.post("/jobpostform",authenticateToken,adminJobForm)
+// id = blog id in POST Model
 router.get('/delete/:id',authenticateToken,deleteBlog)
 module.exports = router;

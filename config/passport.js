@@ -23,7 +23,7 @@ async function(accessToken, refreshToken, profile, cb) {
 
 passport.serializeUser((user, cb)=> {
     process.nextTick(()=> {
-        cb(null, { id: user.id });
+        cb(null, { id: user.id,username:user.username,email:user.email });
     });
 });
 

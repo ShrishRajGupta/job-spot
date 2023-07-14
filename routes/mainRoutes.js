@@ -27,9 +27,9 @@ router.route('/company/register')
     .post(registerCompany)
 
 
-
+// id = job id
 router.get('/job-post/:id', authenticateToken, getJobById);
-router.post('/job-post/:id', authenticateToken, postComment);
+
 
 
 module.exports = router;
