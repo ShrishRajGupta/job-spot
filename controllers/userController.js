@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs')
 require('dotenv').config()
 const UserDB = require('../models/UserModel.js');
+const Admin = require("../models/AdminModel.js");
 const { checkF } = require('../middleware/generateJWT.js');
 
 
@@ -84,10 +85,30 @@ const loginUser = async (req, res) => {
         res.status(500).json({msg:"Server error"}) // render 500
     }
 };
-
+// Follow a user************** //
+const follow =  async (req, res) => {
+    const follower = req.user; // The authenticated user performing the action
+      const followingUser = await Admin.findById(req.params.userId);
+      console.log(follower);
+    try {
+      
+      // Update follower and following user's profiles
+      follower.following.push(followingUser._id);
+      followingUser.followers.push(follower._id);
+      
+      // Save changes to the database
+      await Promise.all([follower.save(), followingUser.save()]);
+  
+      res.status(200).json({ message: 'Successfully followed user.' });
+    } catch (error) {
+        
+      res.status(500).json({ error: 'An error occurred while following the user.' });
+    }
+};
 module.exports = {
     getLoginForm,
     getRegisterForm,
     loginUser,
-    registerUser
+    registerUser,
+    follow
 }

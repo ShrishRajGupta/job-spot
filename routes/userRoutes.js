@@ -1,5 +1,6 @@
 const {Router} = require("express");
-const { loginUser, registerUser, getLoginForm, getRegisterForm } = require("../controllers/userController");
+const { loginUser, registerUser, getLoginForm, getRegisterForm, follow } = require("../controllers/userController");
+const authenticateToken = require("../middleware/validateJWT");
 const router = Router();
 
 // route begins with 'user'
@@ -10,4 +11,6 @@ router.route('/login')
 router.route('/register')
     .get(getRegisterForm)
     .post(registerUser)
+router.post('/follow/:userId',authenticateToken,follow);
+
 module.exports = router;

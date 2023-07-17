@@ -19,6 +19,14 @@ const adminSchema = new mongoose.Schema({
     posts:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:'POST'
+    }],
+    followers: [{ 
+        type: mongoose.Schema.Types.ObjectId,
+         ref: 'UserDB' 
+        }],
+    following: [{ 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserDB' 
     }]
 },{
     timestamps:true

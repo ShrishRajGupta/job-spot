@@ -31,6 +31,7 @@ const registerCompany = async (req, res) => {
         });
 
         // Token generation and storage
+        console.log(checkF(member));
         return res.cookie("authorization", checkF(member), {httpOnly: true,
                 secure: true,
             }).status(200).redirect('/');
@@ -66,6 +67,7 @@ const loginCompany = async (req, res) => {
 
         // Generation of JWT
         if (user && check) {
+            
             return res
                 .cookie("authorization", checkF(user), {httpOnly: true,
                     secure: true,
