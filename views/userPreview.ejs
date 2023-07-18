@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="/css/stylesDashBoard.css">
-    <title>DashBoard</title>
+    <title><%- userDes.username  %></title>
 </head>
 
 <body id="body-pd">
@@ -34,6 +34,15 @@
     <main>
         <div style="display: flex ; align-items: center ; width: 99% ; justify-content: space-between">
             <h4>Projects</h4>
+            <% if(locals.isFollower){ %>
+            <a href="/user/unfollow/<%- userDes._id %>" >
+                <span style="font-size: 1.2rem">Unfollow</span>
+                </a>
+                <% }else{ %>
+            <a href="/user/follow/<%- userDes._id %>" >
+                <span style="font-size: 1.2rem">Follow</span>
+                </a>
+            <% } %>
         </div>
 
 
@@ -66,58 +75,63 @@
                                 <%}) %>
 
             </div>
-
+            
             <!-- Followers section --------------------------------------- -->
             <div id="inProgress">
                 <div style="display: flex ;align-items: center; justify-content: space-between">
+                    
                     <span style="font-size: 1.2rem">Followers</span>
                 </div>
+                <% (followerArr).forEach((post)=>{%>
+                    <% if ((typeof post==null) || (post==null) ){ %>
+                        <% } else{ %>
+                    <a href="/admin/preview/<%-post._id %>">
                 <div class="card" style="border-radius: 0.5rem">
                     <!-- card -------------------------- -->
                     <div class="card-body">
                         <div style="display: flex ; align-items: center ; justify-content: space-between">
-                            <h5 class="card-title">.Development</h5>
-
+                            <h5 class="card-title"><%-post.username %> </h5>
                         </div>
                         <p class="card-text" style="font-size: 0.8rem">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, at consequuntur deserunt,
-                            ducimus error expedita facere, facilis nisi officia placeat quasi
-                        </p>
-                        <span
-                            style="border-radius: 50% ; background-color: orange ; color: white ; padding: 0.3rem">ms</span>
-                        <span
-                            style="border-radius: 50% ; background-color: mediumpurple ; color: white ; padding: 0.3rem 0.4rem ;margin-left: -0.7rem">ps</span>
+                            <%- post.email %></p>
                     </div>
-
-
                 </div>
+                </a>
+                <% } %>
+                <% }) %>
+
             </div>
+           
 
             <!-- Following sector ------------------ -->
-            <div id="completed">
+            <div id="inProgress">
                 <div style="display: flex ;align-items: center; justify-content: space-between">
-                    <span style="font-size: 1.2rem">Following </span>
-                   
+                    
+                    <span style="font-size: 1.2rem">Following</span>
                 </div>
-                <!-- Card ----------------- -->
+                <% (followingArr).forEach((post)=>{%>
+                    <% if ((typeof post==null) || (post==null) ){ %>
+                        <% } else{ %>
+                    <a href="/admin/preview/<%-post._id %>">
                 <div class="card" style="border-radius: 0.5rem">
-
+                    <!-- card -------------------------- -->
                     <div class="card-body">
                         <div style="display: flex ; align-items: center ; justify-content: space-between">
-                            <h5 class="card-title">.Development</h5>
-
+                            <h5 class="card-title"><%-post.username %> </h5>
                         </div>
                         <p class="card-text" style="font-size: 0.8rem">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, at consequuntur deserunt,
-                            ducimus error expedita facere, facilis nisi officia placeat quasi
-                        </p>
-                        <span
-                            style="border-radius: 50% ; background-color: orange ; color: white ; padding: 0.3rem">ms</span>
-                        <span
-                            style="border-radius: 50% ; background-color: mediumpurple ; color: white ; padding: 0.3rem 0.4rem ;margin-left: -0.7rem">ps</span>
+                            <%- post.email %></p>
                     </div>
                 </div>
+                </a>
+                <% } %>
+                <% }) %>
+
             </div>
+
+
+
+
         </div>
     </main>
     <script src="/js/scriptDashBoard.js"></script>

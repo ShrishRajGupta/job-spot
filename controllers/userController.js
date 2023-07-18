@@ -3,10 +3,11 @@ require('dotenv').config()
 const UserDB = require('../models/UserModel.js');
 const Admin = require("../models/AdminModel.js");
 const { checkF } = require('../middleware/generateJWT.js');
+const { adminDetails } = require('../api/preview.js');
 
 
-const getRegisterForm = async(req,res)=>{
-    res.status(200).render('register',{path:'user',alt:'company'});
+const getRegisterForm = async (req, res) => {
+    res.status(200).render('register', { path: 'user', alt: 'company' });
 }
 
 //@desc = a post request to register new user
@@ -14,13 +15,13 @@ const getRegisterForm = async(req,res)=>{
 const registerUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
-        if (!username || !email || !password) 
+        if (!username || !email || !password)
             res.status(400).redirect('/user/register');
 
         //Checking DB for unique UserDB
-        const existingUser = await UserDB.findOne({ email:email });
+        const existingUser = await UserDB.findOne({ email: email });
         if (existingUser)
-            res.redirect('/user/login'); 
+            res.redirect('/user/login');
 
         // hashing and salting password
         let salt = bcrypt.genSaltSync(10);
@@ -33,20 +34,21 @@ const registerUser = async (req, res) => {
 
         // Token generation and storage
         const token = checkF(member);
-        return res.cookie("authorization", token, {httpOnly: true,
-                secure: true,
-            })
+        return res.cookie("authorization", token, {
+            httpOnly: true,
+            secure: true,
+        })
             .status(200).redirect('/');
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({msg:"Server error"}) // render 500
+        res.status(500).json({ msg: "Server error" }) // render 500
     }
 };
 
 //@desc = a get request to verify logged in user 
-const getLoginForm = async (req,res)=>{
-    res.status(200).render('login',{path:'user',alt:'company'});
+const getLoginForm = async (req, res) => {
+    res.status(200).render('login', { path: 'user', alt: 'company' });
 }
 
 //@desc = a post request to verify logged in user 
@@ -68,9 +70,10 @@ const loginUser = async (req, res) => {
 
         // Generation of JWT
         if (user && check) {
-            const token  = checkF(user)
+            const token = checkF(user)
             return res
-                .cookie("authorization", token, {httpOnly: true,
+                .cookie("authorization", token, {
+                    httpOnly: true,
                     secure: true,
                 })
                 .status(200).redirect('/');
@@ -82,33 +85,59 @@ const loginUser = async (req, res) => {
     }
     catch (err) {
         console.log(err); // render to 500
-        res.status(500).json({msg:"Server error"}) // render 500
+        res.status(500).json({ msg: "Server error" }) // render 500
     }
 };
+
 // Follow a user************** //
-const follow =  async (req, res) => {
-    const follower = req.user; // The authenticated user performing the action
-      const followingUser = await Admin.findById(req.params.userId);
-      console.log(follower);
+// @route   GET /user/follow/:userId
+const follow = async (req, res) => {
+    const ID = req.params.userId.toString();
+    const existingUser = await adminDetails(req.user.id); // The authenticated user performing the action
+    const followingUser = await adminDetails(ID);
     try {
-      
-      // Update follower and following user's profiles
-      follower.following.push(followingUser._id);
-      followingUser.followers.push(follower._id);
-      
-      // Save changes to the database
-      await Promise.all([follower.save(), followingUser.save()]);
-  
-      res.status(200).json({ message: 'Successfully followed user.' });
+
+        // Update existingUser and following user's profiles
+        await existingUser.following.push(followingUser._id);
+        await followingUser.followers.push(existingUser._id);
+
+        // Save changes to the database
+        await Promise.all([existingUser.save(), followingUser.save()]);
+        res.status(200)
+            .redirect(`/admin/preview/${ID}`);
     } catch (error) {
-        
-      res.status(500).json({ error: 'An error occurred while following the user.' });
+        res.status(500).json({ error: 'An error occurred while following the user.' });
     }
 };
+
+// @route   GET /user/unfollow/:userId
+const unfollow = async (req, res) => {
+    const ID = req.params.userId.toString();
+    const existingUser = await adminDetails(req.user.id); // The authenticated user performing the action
+    const followingUser = await adminDetails(ID);
+    if(followingUser._id.toString() === existingUser._id.toString()){
+        res.status(200)
+        .redirect(`/admin/preview/${ID}`);
+    }else{
+    try {
+            // Update existingUser and following user's profiles
+            await existingUser.following.pull(followingUser._id.toString());
+            await followingUser.followers.pull(existingUser._id.toString());    
+            // Save changes to the database
+            await Promise.all([existingUser.save(), followingUser.save()]);
+            res.status(200)
+                .redirect(`/admin/preview/${ID}`);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while following the user.' });
+    }
+}
+}
+
 module.exports = {
     getLoginForm,
     getRegisterForm,
     loginUser,
     registerUser,
-    follow
+    follow,
+    unfollow
 }

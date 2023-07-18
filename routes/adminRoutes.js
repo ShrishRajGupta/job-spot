@@ -12,7 +12,6 @@ router.get("/jobpostform",authenticateToken,function(req,res){
 
 // id = admin id in adminDB
 router.get('/preview/:id',authenticateToken,previewUser)
-router.get('/preview//:id',authenticateToken,previewUser)
 
 
 router.post("/jobpostform",authenticateToken,adminJobForm)

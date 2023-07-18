@@ -9,11 +9,12 @@ passport.use(new GoogleStrategy({
   callbackURL:  `${process.env.CLIENT_URL}/auth/google/jobspot`
 },
 async function(accessToken, refreshToken, profile, cb) {
-  const {sub,name,email}=profile._json;
+  const {sub,name,email,picture}=profile._json;
+  // console.log(profile._json);
   
   GoogleUser = profile;
   await Admin.findOrCreate({ 
-    googleId:sub,username:name,email:email}, 
+    googleId:sub,username:name,email:email,picture:picture}, 
     function (err, user) {
     return cb(err, user);
   });

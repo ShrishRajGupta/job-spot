@@ -27,7 +27,11 @@ const adminSchema = new mongoose.Schema({
     following: [{ 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'UserDB' 
-    }]
+    }],
+    picture:{
+        type: String,
+        default: null
+    }
 },{
     timestamps:true
 });

@@ -1,5 +1,10 @@
-const {Router} = require("express");
-const { loginUser, registerUser, getLoginForm, getRegisterForm, follow } = require("../controllers/userController");
+const { Router } = require("express");
+const { loginUser,
+    registerUser,
+    getLoginForm,
+    getRegisterForm,
+    follow,
+    unfollow } = require("../controllers/userController");
 const authenticateToken = require("../middleware/validateJWT");
 const router = Router();
 
@@ -11,6 +16,8 @@ router.route('/login')
 router.route('/register')
     .get(getRegisterForm)
     .post(registerUser)
-router.post('/follow/:userId',authenticateToken,follow);
+    
+router.get('/follow/:userId', authenticateToken, follow);
+router.get('/unfollow/:userId', authenticateToken, unfollow);
 
 module.exports = router;

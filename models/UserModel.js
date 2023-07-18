@@ -13,9 +13,17 @@ const userSchema = mongoose.Schema({
         type:String,
         required:[true,"Enter your Password"]
     },
-    token:{
+    googleId:{
         type:String
-    }
+    },
+    followers: [{ 
+        type: mongoose.Schema.Types.ObjectId,
+         ref: 'UserDB' 
+        }],
+    following: [{ 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserDB' 
+    }]
 },{
     timestamps:true
 });
