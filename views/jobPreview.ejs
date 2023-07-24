@@ -21,10 +21,33 @@
     <title>JobPreview</title>
     <style>
         .preview{
-            display: flexbox;
-            justify-content: center;
-            box-shadow: 4cap;   
+            max-width: 800px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
         }
+        .snippet{
+            font-size: smaller;
+            margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+        }
+        .comments{
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .applyButton{
+            position: absolute;
+            margin-left: 40%;
+            padding: 8px 15px;
+            background-color: green;
+            font-size: 14px;
+        }
+        
     </style>
 </head>
 <body>
@@ -39,7 +62,7 @@
             <a href="/admin" class="w3-bar-item w3-button"><i class='bx bxs-dashboard'></i>DashBoard</a>
 
             <!-- <a href="/admin/jobpostform" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> CREATE</a> -->
-            <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+            <a href="/" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
             <a href="/logout" class="w3-bar-item w3-button"><i class='bx bxs-log-out' ></i> Logout</a>
     
           </div>
@@ -56,6 +79,9 @@
         <br>
         <br>
         <div>
+            <div>
+                <button class="btn-primary applyButton"> + Apply Now</button>
+            </div>
             <h2 class="heading">
                 <a href="/job-post/<%-article._id  %>">
                     <b>
@@ -64,53 +90,67 @@
                     
                 </a>
             </h3>
-            <h3>
-                Descripiton : 
+            <h3 style="font-weight: 500;">
+                Descripiton : </h3>
                 <p class="snippet">
                     <%- article.jobDesc %>
                 </p>
-            </h3>
-            <h4>
-                Skills 🛠️: 
-                <%- article.skills %>
+            
+            <h4 style="font-weight: 500;">
+                Skills 🛠️:  
+             </h4>
+                <p class ="snippet">  <%- article.skills %></p>
+            <h4 style="font-weight: 500;">
+                Duration 🕒:
             </h4>
-            <h4>
-                duration 🕒= <%- article.duration  %>
+                <p class="snippet"><%- article.duration  %></p>
+            
+            <h4 style="font-weight: 500;">
+                Stipend💰:
             </h4>
-            <h4>
-                Stipend💰 = <%- article.stipend %>
-            </h4>
+                <p class="snippet"><%- article.stipend %></p>
+            
             <div>
-                
+                <br>
                 <!-- Like button  -->
                 <a href="/job-post/like/<%-  (article._id.toString()) %>">
-                    <button id="like-btn" onclick="buttonColor()"><i class="fa fa-thumbs-up" aria-hidden="false"></i>Like <%- article.likes.length %></button>
+                    <button class="like-btn" onclick="buttonColor()"><i class="fa fa-thumbs-up" aria-hidden="false"></i>Like <%- article.likes.length %></button>
                 </a>
-                <button style="padding: 5px;"><i class="fa-sharp fa-light fa-comment"></i>Comment</button>
             </div>
         </div>
-
-        <form action="/job-post/<%- (article._id.toString()) %>" method="post">
-                <label for="comment">Comments
+    </section>
+    <br>
+    <section class="preview">
+        <div>
+            <form action="/job-post/<%- (article._id.toString()) %>" method="post">
+                <label for="comment" style="font-weight: 500;">Comments
                 </label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment" placeholder="Type your comment here"></textarea>
-                <button type="submit"class="btn btn-primary">Comment</button>
+                <button type="submit"class="btn btn-primary" style="margin-top: 2px;">Comment</button>
 
         </form>
-        <div>
             <% commentArr.forEach(function(element){ %>
                 <% if ((typeof element==null) || (element==null) ){ %>
                     <% } else{ %>
-                <a href="/admin/preview/<%-element.user_id %>">
-                    <h3><%- element.username %></h3>
-                    <h4><%- element.comment %></h4>
-                </a>
+                        <div class="comments">
+                            
+                            <a href="/admin/preview/<%-element.user_id %>">
+                                <h2 style="font-family: sans-serif;font-weight: 400; font-size: 1.5ch;"><img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="" style="width: 30px; height: 25px;border-radius: 50%; margin-right: 2px;"/> <%- element.username %></h2>
+                            </a>
+                            <h6><%- element.comment %></h6>
+                        </div>
+                
                 <% } %>
             <% }) %>
 
         </div>
-        
-</section>
+    </section>
+    <footer >
+        <div>
+            <h5 style="color: rgb(125, 123, 123);">Copyright &copy; Job-Spot 2023</h5>
+        </div>
+  </footer>
+
 <script src="/js/script.js"></script>
 
 </body>

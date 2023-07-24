@@ -11,6 +11,7 @@
 <!-- Landing Page css styles4.css -->
   <link rel="stylesheet" href="/css/styles4.css">   
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/jobForm.css">
 </head>
 <body>
   <!-- navbar -->
@@ -34,7 +35,29 @@
 <br>
 <br>
 <br>
-<div class="jobdiv">
+<div class="container">
+  <h2>Create Job</h2>
+  <form id="jobPostForm" method="post" action="/admin/jobpostform">
+    <label for="JobTitle">Job Title:</label>
+    <input type="text" name="jobTitle"id="jobTitle" required>
+
+    <label for="jobDescription">Job Description:</label>
+    <textarea id="jobDescription" name="titleDesc" required></textarea>
+
+    <label for="skills">Skills Required:</label>
+    <input type="text" name ="skills"id="skills" required>
+
+    <label for="stipend">Stipend:</label>
+    <input type="text" name="stipend"id="stipend" required>
+
+    <label for="duration">Duration (in months):</label>
+    <input type="number"name="duration" id="duration" required>
+
+    <button type="submit" value="Submit">Post Job</button>
+  </form>
+</div>
+
+<!-- <div class="jobdiv">
     <form action="/admin/jobpostform" method="post">
         <label for="JobTitle">Job Title</label><br>
         <input type="text" id="fname" name="jobTitle" placeholder="Enter the Job title"><br>
@@ -48,10 +71,10 @@
         <input type="text" name="stipend" placeholder="Enter the stipend"><br><br>
         <input type="submit" value="Submit">
       </form>
-</div>
+</div> -->
  <footer >
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-            <h1>Copyright &copy; Job-Spot 2023 ; </h1>
+            <h3>Copyright &copy; Job-Spot 2023</h3>
         </div>
   </footer>
       <script src="/js/script.js"></script>

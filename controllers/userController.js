@@ -128,7 +128,7 @@ const unfollow = async (req, res) => {
             res.status(200)
                 .redirect(`/admin/preview/${ID}`);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while following the user.' });
+        res.status(500).json({ error: 'An error occurred while unfollowing the user.' });
     }
 }
 }

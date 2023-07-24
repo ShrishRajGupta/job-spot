@@ -1,14 +1,16 @@
 .search-container {
     display: flex;
-    justify-content: center;
+    margin-left: 40%;
     margin-top: 20px;
   }
   
   #search-input {
     width: 200px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px 0 0 5px;
+    margin: 2px;
+    border: 1px solid #0c0505;
+    border-radius: 2px 2px 2px 2px;
+    
   }
   
   #search-button {
@@ -23,4 +25,5 @@
   #search-results {
     margin-top: 20px;
   }
+
   

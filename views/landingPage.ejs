@@ -21,7 +21,8 @@
 
   <div class="w3-top">
     <div class="w3-bar w3-white w3-card" id="myNavbar">
-      <a href="/" class="w3-bar-item w3-button w3-wide"><img src="/img/icons8-job-96.png" alt="LOGO" width="30"></a>
+      <a href="/" class="w3-bar-item w3-button w3-wide"><img src="/img/icons8-job-96.png" alt="LOGO" width="30">
+        JOBSPOT</a>
       <!-- Right-sided navbar links -->
       <% if(val){ %>
         <div class="w3-right w3-hide-small">
@@ -69,7 +70,8 @@
     </div>
     <!-- <br> -->
     <div class="search-container">
-      <% if (typeof locals.searchJSON !="undefined" && locals.searchJSON !=null && locals.searchJSON.length !=null && locals.searchJSON.length> 0) { %>
+      <% if (typeof locals.searchJSON !="undefined" && locals.searchJSON !=null && locals.searchJSON.length !=null &&
+        locals.searchJSON.length> 0) { %>
         <% locals.searchJSON.forEach((person)=>{%>
           <% if ((typeof person==null) || (person==null) ){ %>
             <% } else{ %>
@@ -86,17 +88,23 @@
               </a>
               <% } %>
                 <%}) %>
-                <a href="/"><i class='bx bx-x-circle' ></i></a>
+                  <a href="/"><i class='bx bx-x-circle'></i></a>
                   <% } %>
     </div>
 
     <div class="w3-display-left w3-text-white" style="padding:48px">
-      <span class="w3-jumbo w3-hide-small">Start something that matters</span><br>
-      <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
+      <span class="w3-jumbo w3-hide-small">Choose your Right Job</span><br>
+      <span class="w3-xxlarge w3-hide-large w3-hide-medium">Choose your Right Job</span><br>
       <span class="w3-large">Stop wasting valuable time with projects that just isn't you.</span>
       <p><a href="#about"
           class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more
           and start today</a></p>
+    </div>
+    <div>
+      <img
+      class="front_image"
+        src="https://images.unsplash.com/photo-1576267423429-569309b31e84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGVtcGxveWVlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+        alt="image not found" />
     </div>
 
   </header>
@@ -111,13 +119,16 @@
 
         <% jobs.forEach(function(article){ %>
           <div class="notification-list notification-list--unread">
+            <a href="/job-post/<%- article._id %>"> 
             <div class="notification-list_content">
-              <div class="notification-list_detail">
-                <p><b> <a href="/job-post/<%- article._id %>">JOB Title : <%- article.jobTitle %></a></b></p>
-                <p class="text-muted">JOB DESC : <%= article.jobDesc %>
-                </p>
-              </div>
+              
+                <div class="notification-list_detail">
+                  <p>JOB Title : <%- article.jobTitle %></p>
+                  <p class="text-muted" style="text-decoration: none;">JOB DESC : <%= article.jobDesc %>
+                  </p>
+                </div>
             </div>
+          </a>
           </div>
           <% }) %>
   </section>
@@ -162,7 +173,7 @@
 
       <footer>
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-          <h1>Copyright &copy; Job-Spot 2023 ; </h1>
+          <h1>Copyright &copy; Job-Spot 2023 ;</h1>
         </div>
       </footer>
       <script src="/js/script.js"></script>

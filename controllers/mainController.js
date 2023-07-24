@@ -9,7 +9,7 @@ const commentModel = require("../models/commentModel");
 const mainDisplay = async (req, res) => {
 
     try {
-
+        
         const jobs = await POST.find();
         if (!jobs) {
             res.status(403)

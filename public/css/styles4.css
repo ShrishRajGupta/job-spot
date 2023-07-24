@@ -16,8 +16,14 @@ body, html {
 .w3-bar .w3-button {
   padding: 16px;
 }
-
-.liked{
-    color: red;
-    font-size: larger;
+.like-btn {
+  background-color: green;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
 }
+
